@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exampleRepeat
+  labels:
+    app: exampleRepeat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exampleRepeat
+  template:
+    metadata:
+      labels:
+        app: exampleRepeat
+    spec:
+      containers:
+        - name: exampleRepeat-container
+          image: bekovkanat/exampleRepeat:latest # 👈 заменишь на свой dockerhub
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
