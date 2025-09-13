@@ -4,7 +4,7 @@ on:
     branches:
       - main
 env:
-  IMAGE_NAME: bekovkanat/exampleRepeat  # 👈 Укажи свой dockerhub репозиторий
+  IMAGE_NAME: bekovkanat/examplerepeat  # 👈 Укажи свой dockerhub репозиторий
 jobs:
   build-and-push:
     name: Build and Push Docker Image
@@ -43,7 +43,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            DEPLOY_DIR=~/exampleRepeat         
+            DEPLOY_DIR=~/examplerepeat         
             mkdir -p $DEPLOY_DIR          
             rm -rf $DEPLOY_DIR/*           
             echo "Ready to copy files."
@@ -55,7 +55,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "k3s/*"
-          target: "~/exampleRepeat/"
+          target: "~/examplerepeat/"
 
       - name: Apply k3s manifests on VPS
         uses: appleboy/ssh-action@v1.0.0
@@ -64,7 +64,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd ~/exampleRepeat/k3s
+            cd ~/examplerepeat/k3s
             # Подменяем образ внутри deployment.yaml
             sed -i 's|image:.*|image: '"${{ env.IMAGE_NAME }}:latest"'|' deployment.yaml           
             kubectl apply -f .

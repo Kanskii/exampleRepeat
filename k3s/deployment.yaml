@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: exampleRepeat
+  name: examplerepeat
   labels:
-    app: exampleRepeat
+    app: examplerepeat
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: exampleRepeat
+      app: examplerepeat
   template:
     metadata:
       labels:
-        app: exampleRepeat
+        app: examplerepeat
     spec:
       containers:
-        - name: exampleRepeat-container
-          image: bekovkanat/exampleRepeat:latest # 👈 заменишь на свой dockerhub
+        - name: examplerepeat-container
+          image: bekovkanat/examplerepeat:latest # 👈 заменишь на свой dockerhub
           ports:
             - containerPort: 80
           resources:

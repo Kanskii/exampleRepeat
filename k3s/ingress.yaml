@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: exampleRepeat
+  name: examplerepeat
   annotations:
     kubernetes.io/ingress.class: nginx
 spec:
@@ -13,7 +13,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: exampleRepeat
+                name: examplerepeat
                 port:
                   number: 80
     - host: kanat.compnet.kz
@@ -23,6 +23,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: exampleRepeat
+                name: examplerepeat
                 port:
                   number: 80
